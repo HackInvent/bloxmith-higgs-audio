@@ -1,0 +1,114 @@
+[
+  {
+    "key": "enabled",
+    "type": "boolean",
+    "label": "Enable server access",
+    "help": "Text is sent only when this option is enabled and the text input executes. No request during Run preparation."
+  },
+  {
+    "key": "base_url",
+    "label": "Self-hosted server root URL",
+    "help": "Your SGLang-Omni Higgs server, without /v1/audio/speech. HTTPS required except numeric loopback HTTP; no redirects or implicit proxy."
+  },
+  {
+    "key": "api_key_ref",
+    "label": "Server token wallet reference (optional)",
+    "help": "Only the secret reference, never its value. Empty means no authentication. The token is sent solely to the configured server."
+  },
+  {
+    "key": "output_directory",
+    "type": "directory",
+    "label": "Completed audio directory",
+    "help": "Empty uses this node’s persistent audio directory. Unique filenames; no overwrite or automatic deletion."
+  },
+  {
+    "key": "voice",
+    "label": "Server voice",
+    "help": "Default needs no reference clip. Other names must already exist on your server; this block does not upload or clone voices."
+  },
+  {
+    "key": "format",
+    "type": "select",
+    "options": [
+      "ogg_opus",
+      "wav"
+    ],
+    "label": "Completed file format",
+    "help": "Ogg/Opus 48 kHz or PCM WAV 24 kHz, mono. File output only; not a live audio-stream port."
+  },
+  {
+    "key": "model_id",
+    "advanced": true,
+    "label": "Served model identifier",
+    "help": "Must match the Higgs model name or alias on your server. The block cannot verify the remotely loaded weight revision."
+  },
+  {
+    "key": "ca_bundle",
+    "advanced": true,
+    "label": "Trusted CA PEM file (optional)",
+    "help": "Empty uses the operating system trust store. An explicit file replaces that store for this connection; certificate and hostname checks remain enabled."
+  },
+  {
+    "key": "temperature",
+    "type": "number",
+    "min": 0.1,
+    "max": 2,
+    "advanced": true,
+    "label": "Temperature",
+    "help": "Official sampling setting. Greater values increase variation, not voice identity."
+  },
+  {
+    "key": "top_k",
+    "type": "integer",
+    "min": 1,
+    "max": 500,
+    "advanced": true,
+    "label": "Top-k sampling",
+    "help": "Maximum candidate tokens kept at each model sampling step."
+  },
+  {
+    "key": "max_new_tokens",
+    "type": "integer",
+    "min": 16,
+    "max": 4096,
+    "advanced": true,
+    "label": "Maximum generated tokens",
+    "help": "A length-limited result is refused, even if audio bytes were returned. Server model/context limits also apply."
+  },
+  {
+    "key": "max_audio_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 180,
+    "advanced": true,
+    "label": "Maximum audio duration (seconds)",
+    "help": "Reject oversized responses; never truncate them into a successful file. This is a local acceptance limit, not a server-side duration setting."
+  },
+  {
+    "key": "max_text_chars",
+    "type": "integer",
+    "min": 1,
+    "max": 4000,
+    "advanced": true,
+    "label": "Maximum text characters",
+    "help": "Oversized text is refused before connecting. UTF-8 also has an 8192-byte bound; inline Higgs control tags are preserved."
+  },
+  {
+    "key": "timeout_sec",
+    "type": "integer",
+    "min": 1,
+    "max": 240,
+    "advanced": true,
+    "label": "Total request deadline (seconds)",
+    "help": "Includes connection, synthesis, transfer, encoding and publication after dequeue. Closing the connection does not confirm remote GPU cancellation."
+  },
+  {
+    "key": "max_pending",
+    "type": "integer",
+    "min": 0,
+    "max": 16,
+    "advanced": true,
+    "label": "Pending request limit",
+    "help": "Active Runtime only. Zero refuses new text while busy. Interrupt cancels the local request and discards earlier pending text."
+  }
+]

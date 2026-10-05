@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "model": "bosonai/higgs-tts-3-4b",
+  "inspected_model_revision": "239f63fb7b02b1aa085f98d9efae5e35cc5523e8",
+  "server_repository": "https://github.com/sgl-project/sglang-omni",
+  "inspected_server_revision": "353cf3535f8a67a020facc80aef93eba9f8ed5bc",
+  "method": "POST",
+  "path": "/v1/audio/speech",
+  "stream": false,
+  "response_format": "wav",
+  "required_finish_header": "X-Finish-Reason",
+  "successful_finish": "stop",
+  "sample_rate": 24000,
+  "channels": 1,
+  "bit_depth": 16,
+  "model_weights_bundled": false,
+  "actual_server_qualification": "pending",
+  "source_paths": [
+    "sglang_omni/serve/openai_api.py",
+    "sglang_omni/serve/protocol.py",
+    "sglang_omni/client/audio.py",
+    "sglang_omni/client/types.py"
+  ]
+}
